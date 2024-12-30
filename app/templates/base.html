@@ -6,18 +6,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-  <nav>
-    <a href="/index"> pagina inicial</a>
-    <a href="/contato"> contato </a>
-  </nav>
+<body class="bg-gray-200 h-screen flex flex-col">
+  <div class="flex flex-1">
+    <nav class="bg-gray-800 text-white w-64 flex flex-col items-start p-4 space-y-4">
+      <a href="/index" class="hover:bg-gray-700 py-2 px-4 rounded w-full text-left">Página Inicial</a>
+      <a href="/contato" class="hover:bg-gray-700 py-2 px-4 rounded w-full text-left">Contato</a>
+    </nav>
 
-  {% block content %}
-  {% endblock %}
+    <main class="flex-1 bg-white p-6">
+      {% block content %}
+      {% endblock %}
+    </main>
+  </div>
 
-  <h6>Projeto desenvolvido pelo Patrick</h6>
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <p>&copy; 2024 Seu Projeto. Todos os direitos reservados.</p>
+      <p class="mt-2">
+        <a href="/privacy" class="text-blue-400 hover:underline">Política de Privacidade</a> |
+        <a href="/terms" class="text-blue-400 hover:underline">Termos de Uso</a>
+      </p>
+      <p class="mt-4">
+        Siga-nos:
+        <a href="https://facebook.com" target="_blank" class="text-blue-400 hover:underline mx-2">Facebook</a> |
+        <a href="https://twitter.com" target="_blank" class="text-blue-400 hover:underline mx-2">Twitter</a> |
+        <a href="https://instagram.com" target="_blank" class="text-blue-400 hover:underline mx-2">Instagram</a>
+      </p>
+    </div>
+  </footer>
+
 </body>
 
 </html>
