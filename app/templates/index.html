@@ -1,21 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="text-3xl font-semibold text-gray-900 text-center">Bem-vindo a Página Inicial</h1>
-<h3 class="text-gray-900 mt-5 text-justify">Aqui você encontrará um registro detalhado de tudo que aprendi e criei durante minhas aulas, mostrando minha evolução como desenvolvedor. Explore meus projetos e acompanhe minha jornada na programação, do primeiro "Hello World" a soluções completas! Mas primeiro vou me apresentar</h3>
-<p class="mt-5 text-gray-600 text-center">Este é um exemplo de conteúdo para a página inicial usando Tailwind CSS.</p>
-<div style="width: 10rem;">
-  <img class="imgquad" src="{{url_for('static', filename='imagem1.png')}}">
-</div>
-
-<div class="flex justify-center mt-10">
-  <div class="bg-white shadow-md rounded-lg p-6 max-w-sm">
-    <img class="w-32 h-32 rounded-full mx-auto" src="{{url_for('static', filename='sua_foto.jpg')}}" alt="Sua Foto">
-    <div class="text-center mt-4">
-      <h2 class="text-xl font-semibold text-gray-900">{{nome}}</h2>
-      <p class="text-gray-600 mt-2">Idade: 25 anos</p>
-      <p class="text-gray-600">Curso: Ciência da Computação</p>
-      <p class="text-gray-600">Contato: <a href="mailto:seuemail@example.com" class="text-blue-500">seuemail@example.com</a></p>
+<div class="flex flex-col items-center w-full">
+  <div class="text-center mb-8 px-4">
+    <h1 class="text-3xl font-semibold text-gray-900">Welcome to my Home Page</h1>
+    <h3 class="text-gray-900 mt-5">In this page, you will find a detailed record of everything I've learned and created during my classes, showcasing my growth as a developer. Explore my projects and follow my journey in programming, from my first 'Hello World' to complete solutions! But first, let me introduce myself.</h3>
+  </div>
+  <div class="bg-white shadow-xl rounded-2xl p-8 max-w-2xl w-full mx-4 mb-8 transform hover:scale-105 transition-transform duration-300">
+    <div class="flex flex-col md:flex-row items-center md:items-start">
+      <div class="md:mr-8 mb-6 md:mb-0">
+        <div class="w-40 h-40 rounded-full overflow-hidden mx-auto ring-4 ring-blue-400 shadow-lg">
+          <img class="w-full h-full object-cover" src="{{url_for('static', filename='patrick.jpg')}}" alt="Sua Foto">
+        </div>
+      </div>
+      <div class="text-center md:text-left flex-grow">
+        <h2 class="text-2xl font-bold text-gray-800 text-center">Name: {{nome}}</h2>
+        <p class="text-lg text-gray-600 text-center">Years Old: 20</p>
+        <p class="text-gray-700 font-medium text-center">Course: Análise e Desenvolvimento de Sistemas</p>
+        <p class="text-center text-blue-500 hover:text-blue-600 transition-colors duration-300">E-mail: patrick.dias@estudante.ifms.edu.br</p>
+        <p class="text-indigo-600 font-semibold mt-2 text-center">Dev Backend & Frontend</p>
+      </div>
+    </div>
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">Linguagens de Programação</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Java</span>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Python</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Javascript</span>
+          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-sm">MySQL</span>
+          <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">MongoDB</span>
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold text-gray-700 mb-2">Frameworks</h3>
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">React</span>
+          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Vite</span>
+          <span class="px-3 py-1 bg-pink-100 text-pink-800 rounded-full text-sm">Tailwind</span>
+          <span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">Bootstrap</span>
+          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">SpringBoot</span>
+          <span class="px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm">AI</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
