@@ -26,7 +26,7 @@ def class_page():
 
 @app.route("/login")
 def login():
-    title = "Login"
+    title = "Login page"
     return render_template("login.html", title=title)
 
 @app.route("/auth", methods=["POST"])
@@ -41,7 +41,7 @@ def auth():
         return jsonify({"message": "Too many failed attempts. Try again later."}), 403
 
     if user == data['name'] and password == data["password"]:
-        attempts[user] = 0  # Reset attempts on success
+        attempts[user] = 0
         return jsonify({"message": "Authenticated!", "user": user}), 200
     else:
         attempts[user] += 1
