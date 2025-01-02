@@ -123,7 +123,7 @@
 
   <div class="flex flex-col justify-between bg-white shadow-xl rounded-2xl p-6 w-full transform hover:scale-105 transition-transform duration-300 overflow-hidden" style="max-height: 400px;">
     <div class="flex justify-between items-start mb-4">
-      <h2 class="text-xl font-bold text-gray-800">Class date: 06/11</h2>
+      <h2 class="text-xl font-bold text-gray-800" id="with-page">Class date: 06/11</h2>
       <div class="flex item-center gap-1">
         <span class="px-2 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">Class</span>
         <span class="px-2 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">With Activity</span>
@@ -131,7 +131,7 @@
     </div>
     <h3 class="text-sm font-semibold text-gray-700 mb-2">Web Development Class - Building Authentication with Python</h3>
     <div>
-      <p id="text-content" class="text-gray-600 mb-4" style="max-height: 30px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;">
+      <p class="text-gray-600 mb-4" style="max-height: 30px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;">
         In this class, we learned how to send properties to the HTML page.<br>
 
         render_template("index.html", nome=nome)
@@ -144,92 +144,54 @@
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
           <h1 class="font-bold text-lg">Exercise 01</h1>
           <h3>CONSIDERING A MOCK USER AND PASSWORD, CREATE A LOGIN PAGE THAT RETURNS "HELLO" OR "GOOD AFTERNOON" IF IT MATCHES, OTHERWISE "USER AND PASSWORD DO NOT MATCH"</h3>
-          <iframe src="{{ url_for('static', filename='activity/week1/activity01.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3 mt-3"></iframe>
         </div>
 
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
           <h1 class="font-bold text-lg">Exercise 02</h1>
-          <h3>CREATE A ROUTE FOR ACTIVITY 2 THAT ALLOWS THE USER TO CAPTURE A PHOTO FROM THE WEBCAM</h3>
-          <iframe src="{{ url_for('static', filename='activity/week1/activity02.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
+          <h3>LIMIT THE USER'S AUTHENTICATION ATTEMPTS TO 2</h3>
         </div>
 
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
           <h1 class="font-bold text-lg">Exercise 03</h1>
-          <h3>CREATE A ROUTE FOR ACTIVITY 3 FOR A WEB PAGE THAT DISPLAYS A TABLE WITHOUT TABLE WITH 997 ROWS AND 5 COLUMNS (id, name, surname, email, and actions)</h3>
-          <iframe src="{{ url_for('static', filename='activity/week1/activity03.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
+          <h3>STYLIZE THE ACTIVITY NICELY</h3>
         </div>
 
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
           <h1 class="font-bold text-lg">Exercise 04</h1>
-          <h3>CREATE A ROUTE FOR ACTIVITY 4 WITH 3 LINKS, ONE FOR EACH ACTIVITY BUT STYLIZED</h3>
-          <iframe src="{{ url_for('static', filename='activity/week1/activity04.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
-        </div>
-
-        <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
-          <h1 class="font-bold text-lg">Exercise 05</h1>
-          <h3>CREATE 6 ROUTES, EACH ONE BEAUTIFUL, SHOULD CONTAIN THE GROUP'S CURRICULUM</h3>
-          <iframe src="{{ url_for('static', filename='activity/week1/activity05.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
+          <h3>WRITE A PYTHON SCRIPT THAT AUTOMATICALLY GENERATES AN HTML TEMPLATE CONTAINING A FORM FOR DATA INPUT, WHICH SHOULD BE PROVIDED BY A JSON PAYLOAD</h3>
         </div>
 
         <h2 class="mt-8">Flask Route Code</h2>
         <pre class="bg-gray-800 text-white p-4 rounded-md font-mono overflow-x-auto">
     <code>
-      from flask import Flask
-      from flask import render_template
+      attempts = {}
+      data = {
+          "name": "admin",
+          "password": "admin"
+      }
+
+      @app.route("/login")
+      def login():
+          title = "Login page"
+          return render_template("login.html", title=title)
       
-      xapp = Flask(__name__)
+      @app.route("/auth", methods=["POST"])
+      def auth():
+          user = request.form.get('user')
+          password = request.form.get('pass')
       
-      @xapp.route("/")
-      def start():
-        return render_template("activity04.html")
+          if user not in attempts:
+              attempts[user] = 0
       
-      @xapp.route("/activity01")
-      def activity01():
-        return render_template("activity01.html") 
+          if attempts[user] >= 2:
+              return jsonify({"message": "Too many failed attempts. Try again later."}), 403
       
-      @xapp.route("/activity02")
-      def activity02():
-        return render_template("activity02.html") 
-      
-      @xapp.route("/activity03")
-      def activity03():
-        return render_template("activity03.html") 
-      
-      @xapp.route("/activity04")
-      def activity04():
-        return render_template("activity04.html") 
-      
-      @xapp.route("/curriculum01")
-      def curriculum01():
-        return render_template("curriculum01.html") 
-      
-      @xapp.route("/curriculum02")
-      def curriculum02():
-        return render_template("curriculum02.html") 
-      
-      @xapp.route("/curriculum03")
-      def curriculum03():
-        return render_template("curriculum03.html") 
-      
-      @xapp.route("/curriculum04")
-      def curriculum04():
-        return render_template("curriculum04.html") 
-      
-      @xapp.route("/curriculum05")
-      def curriculum05():
-        return render_template("curriculum05.html") 
-      
-      @xapp.route("/curriculum06")
-      def curriculum06():
-        return render_template("curriculum06.html") 
-      
-      @xapp.route("/contact")
-      def contact():
-        return render_template("contact.html") 
-      
-      if __name__ == "__main__":
-        xapp.run(debug=True, host="0.0.0.0")
-      
+          if user == data['name'] and password == data["password"]:
+              attempts[user] = 0
+              return jsonify({"message": "Authenticated!", "user": user}), 200
+          else:
+              attempts[user] += 1
+              return jsonify({"message": "Invalid user or password"}), 401
     </code>
                 </pre>
       </div>
@@ -254,6 +216,11 @@
       <button id="close-popup" class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
         Close
       </button>
+
+      <button id="goto-page" class="px-4 py-2 bg-green-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">
+        Go to page
+      </button>
+
     </div>
   </div>
 </div>
@@ -264,16 +231,26 @@
     const popup = document.getElementById('popup');
     const popupContent = document.getElementById('popup-content');
     const closePopup = document.getElementById('close-popup');
+    const gotoPage = document.getElementById('goto-page');
 
     cards.forEach(card => {
       const openPopupButton = card.querySelector('.open-popup');
       const textContent = card.querySelector('#text-content');
+      const withPage = card.querySelector('#with-page');
 
       openPopupButton.addEventListener('click', () => {
         if (textContent) {
-          // Move the iframe content to the popup
           popupContent.innerHTML = `<p class="text-gray-600">${textContent.innerHTML}</p>`;
           popup.classList.remove('hidden');
+
+          if (withPage) {
+            gotoPage.classList.remove('hidden');
+
+            const link = '/login';
+            gotoPage.onclick = () => window.location.href = link;
+          } else {
+            gotoPage.classList.add('hidden');
+          }
         }
       });
     });
@@ -288,5 +265,6 @@
       }
     });
   });
+
 </script>
 {% endblock %}
