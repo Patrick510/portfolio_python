@@ -21,10 +21,14 @@
     <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Capture Webcam Image</h2>
 
     <div class="flex flex-col items-center space-y-4">
-      <video id="video" width="500" height="400" class="border-4 border-blue-500 rounded-lg shadow-lg" autoplay playsinline></video>
+      <video id="video" width="500" height="400" class="border-4 border-blue-500 rounded-lg shadow-lg hidden" autoplay playsinline></video>
       <canvas id="canvas" width="500" height="400" class="border-4 border-blue-500 rounded-lg shadow-lg hidden"></canvas>
 
-      <button onclick="capturarImagem()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out font-medium shadow-md">
+      <button onclick="ativarCamera()" class="px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300 ease-in-out font-medium shadow-md">
+        Open Camera
+      </button>
+
+      <button onclick="capturarImagem()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out font-medium shadow-md hidden" id="captureButton">
         Capture Image
       </button>
     </div>
@@ -34,19 +38,29 @@
     const video = document.getElementById('video');
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+    const captureButton = document.getElementById('captureButton');
+    let currentStream;
 
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
-        video.srcObject = stream;
-      })
-      .catch(error => {
-        console.error("Error accessing webcam:", error);
-      });
+    function ativarCamera() {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          currentStream = stream;
+          video.srcObject = stream;
+          video.classList.remove('hidden');
+          captureButton.classList.remove('hidden');
+        })
+        .catch(error => {
+          console.error("Error accessing webcam:", error);
+        });
+    }
 
     function capturarImagem() {
       ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
       canvas.classList.remove('hidden');
       video.classList.add('hidden');
+
+      const tracks = currentStream.getTracks();
+      tracks.forEach(track => track.stop());
     }
   </script>
 </body>
