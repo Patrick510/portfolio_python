@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 03 - Data Table</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="font-sans bg-gradient-to-br from-blue-100 to-blue-200 min-h-screen p-4">
+  <div class="fixed top-4 left-4 z-10">
+    <a href="http://127.0.0.1:5000/activity04" class="fixed top-4 left-4 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors duration-200">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-xl rounded-2xl p-6 w-full max-w-6xl">
+      <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Data Table (997 Rows)</h2>
+      <div class="overflow-x-auto">
+        <div class="overflow-y-auto max-h-[70vh] w-full rounded-lg border border-gray-200" id="table"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // The JavaScript code remains unchanged
+    const generateMockData = (n) => {
+      const data = [];
+      for (let i = 1; i <= n; i++) {
+        data.push({
+          id: i,
+          firstName: `First${i}`,
+          lastName: `Last${i}`,
+          email: `user${i}@example.com`,
+        });
+      }
+      return data;
+    };
+
+    const createTableRow = (data) => {
+      const table = document.getElementById("table");
+
+      const headerRow = document.createElement("div");
+      headerRow.classList.add("flex", "bg-blue-600", "text-white", "font-bold", "text-sm", "sticky", "top-0");
+
+      ["ID", "First Name", "Last Name", "Email", "Actions"].forEach((text) => {
+        const column = document.createElement("div");
+        column.classList.add("flex-1", "p-3", "text-center");
+        column.textContent = text;
+        headerRow.appendChild(column);
+      });
+      table.appendChild(headerRow);
+
+      data.forEach((item, index) => {
+        const row = document.createElement("div");
+        row.classList.add("flex", "text-sm", index % 2 === 0 ? "bg-gray-50" : "bg-white", "hover:bg-gray-100", "transition-colors", "duration-150");
+
+        Object.values(item).forEach((value) => {
+          const column = document.createElement("div");
+          column.classList.add("flex-1", "p-3", "text-center");
+          column.textContent = value;
+          row.appendChild(column);
+        });
+
+        const actions = document.createElement("div");
+        actions.classList.add("flex-1", "p-3", "text-center");
+
+        const editButton = document.createElement("button");
+        editButton.textContent = "Edit";
+        editButton.classList.add("bg-green-500", "text-white", "rounded", "px-3", "py-1", "mr-2", "transition-colors", "duration-300", "hover:bg-green-600");
+        actions.appendChild(editButton);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.classList.add("bg-red-500", "text-white", "rounded", "px-3", "py-1", "transition-colors", "duration-300", "hover:bg-red-600");
+        actions.appendChild(deleteButton);
+
+        row.appendChild(actions);
+        table.appendChild(row);
+      });
+    };
+
+    const data = generateMockData(997);
+    createTableRow(data);
+  </script>
+</body>
+
+</html>

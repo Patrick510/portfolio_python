@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity 01 - Move the Image</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 p-4">
+  <div class="fixed top-4 left-4 z-10">
+    <a href="http://127.0.0.1:5000/activity04" class="fixed top-4 left-4 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors duration-200">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-2xl">
+      <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-800 text-center">Move the image</h1>
+        <p class="text-gray-600 text-center mt-2">Press the right and left buttons or use your keyboard arrow keys</p>
+      </div>
+
+      <div class="flex items-center justify-center mb-6">
+        <canvas id="meuCanvas" width="500" height="400" class="border-4 border-blue-500 rounded-lg shadow-lg"></canvas>
+      </div>
+
+      <div class="flex justify-center space-x-4">
+        <button onclick="moverEsquerda()" class="px-6 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out font-medium shadow-md">
+          Left
+        </button>
+        <button onclick="moverDireita()" class="px-6 py-3 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out font-medium shadow-md">
+          Right
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("meuCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let imgPosX = 200;
+    let imgPosY = 150;
+    const velocidade = 10;
+
+    const img = new Image();
+    img.src = "https://photutorial.com/wp-content/uploads/2023/04/Featured-image-AI-image-generators-by-Midjourney.png";
+
+    img.onerror = () => {
+      console.log("Erro ao carregar a imagem. Usando imagem de backup.");
+      img.src = "caminho/para/sua/imagem/local.png";
+    };
+
+    img.onload = () => {
+      ctx.drawImage(img, imgPosX, imgPosY, 100, 100);
+    };
+
+    function desenharImagem() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, imgPosX, imgPosY, 100, 100);
+    }
+
+    function moverEsquerda() {
+      imgPosX -= velocidade;
+      desenharImagem();
+    }
+
+    function moverDireita() {
+      imgPosX += velocidade;
+      desenharImagem();
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") moverEsquerda();
+      if (event.key === "ArrowRight") moverDireita();
+    });
+  </script>

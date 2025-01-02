@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 02 - Webcam Capture</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 flex flex-col items-center justify-center p-4">
+  <div class="fixed top-4 left-4 z-10">
+    <a href="http://127.0.0.1:5000/activity04" class="fixed top-4 left-4 flex items-center justify-center w-10 h-10 bg-white rounded-full shadow-md hover:bg-gray-100 transition-colors duration-200">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-2xl">
+    <h2 class="text-3xl font-bold text-gray-800 text-center mb-6">Capture Webcam Image</h2>
+
+    <div class="flex flex-col items-center space-y-4">
+      <video id="video" width="500" height="400" class="border-4 border-blue-500 rounded-lg shadow-lg" autoplay playsinline></video>
+      <canvas id="canvas" width="500" height="400" class="border-4 border-blue-500 rounded-lg shadow-lg hidden"></canvas>
+
+      <button onclick="capturarImagem()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out font-medium shadow-md">
+        Capture Image
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(error => {
+        console.error("Error accessing webcam:", error);
+      });
+
+    function capturarImagem() {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      canvas.classList.remove('hidden');
+      video.classList.add('hidden');
+    }
+  </script>
+</body>
+
+</html>
