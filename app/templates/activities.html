@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Hello contato {{nome}}</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
   <div class="flex flex-col justify-between bg-white shadow-xl rounded-2xl p-6 w-full transform hover:scale-105 transition-transform duration-300 overflow-hidden" style="max-height: 400px;">
     <div class="flex justify-between items-start mb-4">
-      <h2 class="text-xl font-bold text-gray-800">Data da aula: 23/10</h2>
+      <h2 class="text-xl font-bold text-gray-800">Class date: 30/10</h2>
       <div class="flex item-center gap-1">
-        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">Aula</span>
-        <span class="px-2 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">C/Atividade</span>
+        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-sm font-semibold rounded-full">Class</span>
+        <span class="px-2 py-1 bg-green-100 text-green-800 text-sm font-semibold rounded-full">With Activity</span>
       </div>
     </div>
-    <h3 class="text-sm font-semibold text-gray-700 mb-2">PRIMEIRO CONTATO COM FLASK - EXERCICIOS PARA FIXAÇÃO</h3>
+    <h3 class="text-sm font-semibold text-gray-700 mb-2">FIRST CONTACT WITH FLASK - EXERCISES FOR PRACTICE</h3>
     <div>
       <p class="text-gray-600 mb-4" style="max-height: 30px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-box-orient: vertical;">
         Toda programação em web trabalha com Requisição e
@@ -19,36 +18,36 @@
 
       <div class="hidden" id="text-content">
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
-          <h1 class="font-bold text-lg">Exercicio 01</h1>
-          <h3>CRIE UMA PAGINA ROTA PARA UMA PAGINA WEB COM A TAG CANVAS, QUE PERMITE O USUARIO DESLOCAR UMA FOTOGRAFIA DA DIREITA PRA ESQUERDA COM AS TECLAS DO TELCADO, NOME DA ROTA "ATIVIDADE 1"</h3>
+          <h1 class="font-bold text-lg">Exercise 01</h1>
+          <h3>CREATE A ROUTE FOR A WEB PAGE WITH THE CANVAS TAG, ALLOWING THE USER TO MOVE A PHOTO FROM RIGHT TO LEFT USING THE ARROW KEYS, ROUTE NAME 'ACTIVITY 1'</h3>
           <iframe src="{{ url_for('static', filename='activity/week1/activity01.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3 mt-3"></iframe>
         </div>
 
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
-          <h1 class="font-bold text-lg">Exercicio 02</h1>
-          <h3>CRIE UMA ROTA PARA ATIVIDADE 2 QUE PERMITA O USUARIO CAPTURAR UMA FOTOGRAFIA DA WEBCAM</h3>
+          <h1 class="font-bold text-lg">Exercise 02</h1>
+          <h3>CREATE A ROUTE FOR ACTIVITY 2 THAT ALLOWS THE USER TO CAPTURE A PHOTO FROM THE WEBCAM</h3>
           <iframe src="{{ url_for('static', filename='activity/week1/activity02.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
         </div>
 
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
-          <h1 class="font-bold text-lg">Exercicio 03</h1>
-          <h3>CRIE UMA ROTA PARA ATIVIDADE 3 PARA UMA PAGINA WEB QUE EXIBA UMA TABELA SEM TABLE COM 997 LINHAS E 5 COLUNAS(id, nome, sobrenome, email e ações)</h3>
+          <h1 class="font-bold text-lg">Exercise 03</h1>
+          <h3>CREATE A ROUTE FOR ACTIVITY 3 FOR A WEB PAGE THAT DISPLAYS A TABLE WITHOUT TABLE WITH 997 ROWS AND 5 COLUMNS (id, name, surname, email, and actions)</h3>
           <iframe src="{{ url_for('static', filename='activity/week1/activity03.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
         </div>
 
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
-          <h1 class="font-bold text-lg">Exercicio 04</h1>
-          <h3>CRITE UMA ROTA PARA ATIVIDADE 4 COM 3 LINKS, UM PARA CADA ATIVIDADE MAS ESTILIZADA</h3>
+          <h1 class="font-bold text-lg">Exercise 04</h1>
+          <h3>CREATE A ROUTE FOR ACTIVITY 4 WITH 3 LINKS, ONE FOR EACH ACTIVITY BUT STYLIZED</h3>
           <iframe src="{{ url_for('static', filename='activity/week1/activity04.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
         </div>
 
         <div class="flex flex-col items-center text-center border-b border-gray-300 pb-4">
-          <h1 class="font-bold text-lg">Exercicio 05</h1>
-          <h3>CRIE 6 ROTAS SENDO CADA UMA DELAS BONITA, DEVE CONTER O CURRICULO DO GRUPO</h3>
+          <h1 class="font-bold text-lg">Exercise 05</h1>
+          <h3>CREATE 6 ROUTES, EACH ONE BEAUTIFUL, SHOULD CONTAIN THE GROUP'S CURRICULUM</h3>
           <iframe src="{{ url_for('static', filename='activity/week1/activity05.html') }}" width="600" height="400" class="w-75 h-96 border-2 border-gray-300 rounded-lg shadow-lg mt-3"></iframe>
         </div>
 
-        <h2 class="mt-8">Código das Rotas Flask</h2>
+        <h2 class="mt-8">Flask Route Code</h2>
         <pre class="bg-gray-800 text-white p-4 rounded-md font-mono overflow-x-auto">
     <code>
       from flask import Flask
@@ -129,7 +128,7 @@
     <div id="popup-content" style="max-height: 35rem; overflow-x: hidden; overflow-y: auto;"></div>
     <div class="text-center mt-4">
       <button id="close-popup" class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md shadow-sm hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
-        Fechar
+        Close
       </button>
     </div>
   </div>

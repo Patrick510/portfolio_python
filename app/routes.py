@@ -11,10 +11,10 @@ def index():
 
 @app.route('/activity')
 def contato():
-    title = "Atividades"
+    title = "Activities"
     return render_template('activities.html', title=title, nome=nome)
 
 @app.route('/class')
 def class_page():
-    title = "Aulas"
+    title = "Classes"
     return render_template('class.html', title=title, nome=nome)
