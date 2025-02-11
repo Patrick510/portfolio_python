@@ -9,6 +9,15 @@
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center h-screen">
+  <a href="/" class="absolute top-4 left-4">
+    <button class="flex items-center gap-2 px-4 py-2 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 002 2h4a2 2 0 002-2v-1m0-8V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v1" />
+      </svg>
+      Voltar
+    </button>
+  </a>
+
   <div class="bg-white p-8 rounded-lg shadow-lg w-96">
     <h1 class="text-2xl font-semibold text-center text-gray-700 mb-4">Faça o upload da sua imagem</h1>
     <form action="/sendImage" method="POST" enctype="multipart/form-data" class="space-y-4">
