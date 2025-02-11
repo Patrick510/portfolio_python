@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{name}}</title>
+</head>
+
+<body>
+  <a href="/home"><button>Voltar</button></a>
+  <Form method="post" action="/submit">
+    <label for="text">Text</label>
+    <input type="text" id="text" name="text" placeholder="Your text...">
+
+    <button type="submit">Send</button>
+  </Form>
+  {% if message %}
+  <p style="color: green;"> {{message}}</p>
+  {% endif %}
+</body>
+
+</html>
