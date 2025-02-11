@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, jsonify
 from datetime import datetime
+import os
 
 nome = 'Patrick Dias'
 attempts = {}
@@ -105,6 +106,10 @@ def login02():
 
     attempt02 = 0
     return render_template("index.html", message=message[3], disable=False)
+
+@app.route("/activ03")
+def activ02():
+    return render_template("activ03.html", name="3. Photo Upload Page")
 
 @app.route('/sendImage', methods=['GET', 'POST'])
 def upload_file():
