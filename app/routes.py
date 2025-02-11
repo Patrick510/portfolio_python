@@ -68,6 +68,10 @@ def auth():
 def home():
   return render_template("activ01.html", name="1. Personal Mini-blog", texts=texts)
 
+@app.route("/form01")
+def form01():
+  return render_template("form01.html", name="1. Personal Mini-blog", texts=texts)
+
 @app.route("/submit", methods=["POST"])
 def submit():
   global id_text
