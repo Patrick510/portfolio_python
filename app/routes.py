@@ -1,6 +1,6 @@
 from app import app
 from flask import render_template, request, jsonify
-import datetime
+from datetime import datetime
 
 nome = 'Patrick Dias'
 attempts = {}
@@ -15,6 +15,14 @@ attempts02 = []
 attempt02 = 0
 message = ["Login successfully", "Login failed", "Limit attempts exceeded", "Please fill in both fields"]
 validate = ["user", "admin"]
+
+UPLOAD_FOLDER = 'static/uploads'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/')
 @app.route('/index')
@@ -77,7 +85,7 @@ def activ02():
     return render_template("login02.html", name="2. Basic Authentication Page")
 
 @app.route("/login02", methods=["POST"])
-def login():
+def login02():
     global attempt02
     user = request.form.get("user")
     password = request.form.get("pass")
@@ -96,4 +104,23 @@ def login():
             return render_template("index02.html", message=message[1])
 
     attempt02 = 0
-    return render_template("index02.html", message=message[3], disable=False)
+    return render_template("index.html", message=message[3], disable=False)
+
+@app.route('/sendImage', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            return 'No file part'
+        file = request.files['file']
+        if file.filename == '':
+            return 'No selected file'
+        if file and allowed_file(file.filename):
+            timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+            filename = f"{timestamp}_{file.filename}"
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            
+            file.save(file_path)
+            
+            return f'File successfully uploaded! File path: {file_path}'
+    
+    return render_template('upload_form.html')

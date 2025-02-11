@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{name}}</title>
+</head>
+
+<body>
+  <form method="post" action="/login">
+    <label for="user">User</label>
+    <input type="text" name="user" placeholder="Your user..." required>
+
+    <label for="pass">Password</label>
+    <input type="password" name="pass" placeholder="Your password..." required>
+
+    <button type="submit" {% if disable %} disabled {% endif %}>Login</button>
+  </form>
+
+  {% if message %}
+  <p> {{message}}</p>
+  {% endif %}
+
+  <h3>Tentativas</h3>
+  <ul>
+    {% for attempt in attempts %}
+    <li>Usuario: {{attempt.user}}, Data: {{attempt.date}}</li>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>
