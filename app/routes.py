@@ -108,7 +108,7 @@ def login02():
     return render_template("index.html", message=message[3], disable=False)
 
 @app.route("/activ03")
-def activ02():
+def activ03():
     return render_template("activ03.html", name="3. Photo Upload Page")
 
 @app.route('/sendImage', methods=['GET', 'POST'])
@@ -120,7 +120,7 @@ def upload_file():
         if file.filename == '':
             return 'No selected file'
         if file and allowed_file(file.filename):
-            timestamp = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+            timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
             filename = f"{timestamp}_{file.filename}"
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             
