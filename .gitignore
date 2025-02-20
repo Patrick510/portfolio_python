@@ -3,6 +3,5 @@ logo.svg
 anota.txt
 *.jpeg
 *.png
-*.jpg
 *.gif
 .vercel
