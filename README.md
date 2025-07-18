@@ -1,5 +1,3 @@
-https://andrewbaisden.medium.com/how-to-deploy-a-python-flask-app-to-vercel-ff4a63d312f4
-
 # Como Executar a Aplicação de Portfólio (Python + Flask)
 
 Este guia detalha o processo para configurar e executar sua aplicação de portfólio desenvolvida com Python e Flask.
@@ -120,4 +118,4 @@ Certifique-se de que os seguintes itens estejam instalados no seu ambiente:
 
 ---
 
-Agora sua aplicação de portfólio está configurada e pronta para uso!
+Agora sua aplicação está configurada e pronta para uso!
